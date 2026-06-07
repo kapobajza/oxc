@@ -1,0 +1,17 @@
+---
+source: crates/oxc_linter/src/tester.rs
+---
+
+  ⚠ jest(prefer-jest-mocked): Prefer `jest.mocked(foo)` over `<jest.Mock>foo`.
+   ╭─[prefer_jest_mocked.ts:1:2]
+ 1 │ (<jest.Mock>foo).mockReturnValue(1);
+   ·  ──────────────
+   ╰────
+  help: Prefer `jest.mocked()`
+
+  ⚠ jest(prefer-jest-mocked): Prefer `jest.mocked(foo)` over `<jest.Mock>foo`.
+   ╭─[prefer_jest_mocked.ts:1:2]
+ 1 │ (<jest.Mock>foo as unknown).mockReturnValue(1);
+   ·  ──────────────
+   ╰────
+  help: Prefer `jest.mocked()`

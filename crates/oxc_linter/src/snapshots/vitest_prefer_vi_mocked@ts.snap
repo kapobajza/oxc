@@ -1,0 +1,17 @@
+---
+source: crates/oxc_linter/src/tester.rs
+---
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `<Mock>foo`.
+   ╭─[prefer_vi_mocked.ts:1:2]
+ 1 │ (<Mock>foo).mockReturnValue(1);
+   ·  ─────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `<Mock>foo`.
+   ╭─[prefer_vi_mocked.ts:1:2]
+ 1 │ (<Mock>foo as unknown).mockReturnValue(1);
+   ·  ─────────
+   ╰────
+  help: Prefer `vi.mocked()`

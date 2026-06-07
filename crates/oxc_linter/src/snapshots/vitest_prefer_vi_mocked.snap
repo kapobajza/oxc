@@ -1,0 +1,163 @@
+---
+source: crates/oxc_linter/src/tester.rs
+---
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as Mock`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (foo as Mock).mockReturnValue(1);
+   ·  ───────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as unknown as string as unknown as Mock`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (foo as unknown as string as unknown as Mock).mockReturnValue(1);
+   ·  ───────────────────────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as unknown as Mock as unknown as Mock`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (foo as unknown as Mock as unknown as Mock).mockReturnValue(1);
+   ·  ─────────────────────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  × Unexpected token
+   ╭─[prefer_vi_mocked.tsx:1:8]
+ 1 │ (<Mock>foo).mockReturnValue(1);
+   ·        ────────────────────────
+   ╰────
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as Mock`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (foo as Mock).mockImplementation(1);
+   ·  ───────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as unknown as Mock`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (foo as unknown as Mock).mockReturnValue(1);
+   ·  ──────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  × Unexpected token
+   ╭─[prefer_vi_mocked.tsx:1:8]
+ 1 │ (<Mock>foo as unknown).mockReturnValue(1);
+   ·        ───────────────────────────────────
+   ╰────
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(Obj.foo)` over `Obj.foo as Mock`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (Obj.foo as Mock).mockReturnValue(1);
+   ·  ───────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked([].foo)` over `[].foo as Mock`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ ([].foo as Mock).mockReturnValue(1);
+   ·  ──────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as MockedFunction`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (foo as MockedFunction).mockReturnValue(1);
+   ·  ─────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as MockedFunction`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (foo as MockedFunction).mockImplementation(1);
+   ·  ─────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as unknown as MockedFunction`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (foo as unknown as MockedFunction).mockReturnValue(1);
+   ·  ────────────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(Obj.foo)` over `Obj.foo as MockedFunction`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (Obj.foo as MockedFunction).mockReturnValue(1);
+   ·  ─────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(new Array(0).fill(null).foo)` over `new Array(0).fill(null).foo as MockedFunction`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (new Array(0).fill(null).foo as MockedFunction).mockReturnValue(1);
+   ·  ─────────────────────────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(vi.fn(() => foo))` over `vi.fn(() => foo) as MockedFunction`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (vi.fn(() => foo) as MockedFunction).mockReturnValue(1);
+   ·  ──────────────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(useFocused)` over `useFocused as MockedFunction<typeof useFocused>`.
+   ╭─[prefer_vi_mocked.tsx:1:26]
+ 1 │ const mockedUseFocused = useFocused as MockedFunction<typeof useFocused>;
+   ·                          ───────────────────────────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(MessageService.getMessage)` over `MessageService.getMessage as Mock`.
+   ╭─[prefer_vi_mocked.tsx:1:17]
+ 1 │ const filter = (MessageService.getMessage as Mock).mock.calls[0][0];
+   ·                 ─────────────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as MockedClass<A>`.
+   ╭─[prefer_vi_mocked.tsx:2:14]
+ 1 │ class A {}
+ 2 │             (foo as MockedClass<A>)
+   ·              ─────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(foo)` over `foo as MockedObject<{method: () => void}>`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (foo as MockedObject<{method: () => void}>)
+   ·  ─────────────────────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(Obj["foo"])` over `Obj["foo"] as MockedFunction`.
+   ╭─[prefer_vi_mocked.tsx:1:2]
+ 1 │ (Obj["foo"] as MockedFunction).mockReturnValue(1);
+   ·  ────────────────────────────
+   ╰────
+  help: Prefer `vi.mocked()`
+
+  ⚠ vitest(prefer-vi-mocked): Prefer `vi.mocked(new Array(100)
+  │               .fill(undefined)
+  │               .map(x => x.value)
+  │               .filter(v => !!v).myProperty)` over `new Array(100)
+  │               .fill(undefined)
+  │               .map(x => x.value)
+  │               .filter(v => !!v).myProperty as MockedFunction<{
+  │               method: () => void;
+  │             }>`.
+   ╭─[prefer_vi_mocked.tsx:2:13]
+ 1 │     (
+ 2 │ ╭─▶             new Array(100)
+ 3 │ │                 .fill(undefined)
+ 4 │ │                 .map(x => x.value)
+ 5 │ │                 .filter(v => !!v).myProperty as MockedFunction<{
+ 6 │ │                 method: () => void;
+ 7 │ ╰─▶             }>
+ 8 │                 ).mockReturnValue(1);
+   ╰────
+  help: Prefer `vi.mocked()`
