@@ -173,17 +173,6 @@ pub fn check_ts_enum_declaration<'a>(decl: &TSEnumDeclaration<'a>, ctx: &Semanti
     check_type_name_is_reserved(&decl.id, ctx, "Enum");
 }
 
-pub fn check_ts_import_equals_declaration<'a>(
-    decl: &TSImportEqualsDeclaration<'a>,
-    ctx: &SemanticBuilder<'a>,
-) {
-    // `import type Foo = require('./foo')` is allowed
-    // `import { Foo } from './foo'; import type Bar = Foo.Bar` is not allowed
-    if decl.import_kind.is_type() && !decl.module_reference.is_external() {
-        ctx.error(diagnostics::import_alias_cannot_use_import_type(decl.span));
-    }
-}
-
 pub fn check_class<'a>(class: &Class<'a>, ctx: &SemanticBuilder<'a>) {
     if !class.r#abstract {
         for elem in &class.body.body {
@@ -321,13 +310,6 @@ pub fn check_method_definition<'a>(method: &MethodDefinition<'a>, ctx: &Semantic
     }
 }
 
-pub fn check_property_definition(prop: &PropertyDefinition, ctx: &SemanticBuilder<'_>) {
-    // abstract cannot be used with private identifiers
-    if prop.r#type.is_abstract() && prop.key.is_private_identifier() {
-        ctx.error(diagnostics::abstract_cannot_be_used_with_private_identifier(prop.key.span()));
-    }
-}
-
 pub fn check_object_property(prop: &ObjectProperty, ctx: &SemanticBuilder<'_>) {
     if let Expression::FunctionExpression(func) = &prop.value
         && prop.kind.is_accessor()
@@ -347,17 +329,6 @@ pub fn check_for_statement_left(left: &ForStatementLeft, is_for_in: bool, ctx: &
             let span = decl.id.span();
             ctx.error(diagnostics::type_annotation_in_for_left(span, is_for_in));
         }
-    }
-}
-
-pub fn check_jsx_expression_container(
-    container: &JSXExpressionContainer,
-    ctx: &SemanticBuilder<'_>,
-) {
-    if matches!(container.expression, JSXExpression::SequenceExpression(_)) {
-        ctx.error(diagnostics::jsx_expressions_may_not_use_the_comma_operator(
-            container.expression.span(),
-        ));
     }
 }
 
